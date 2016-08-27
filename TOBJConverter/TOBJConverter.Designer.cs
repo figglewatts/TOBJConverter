@@ -40,6 +40,8 @@
 			this.TexturePreviewBox = new System.Windows.Forms.PictureBox();
 			this.ConvertButton = new System.Windows.Forms.Button();
 			this.DirectorySearchCheckbox = new System.Windows.Forms.CheckBox();
+			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
 			((System.ComponentModel.ISupportInitialize)(this.TexturePreviewBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -49,6 +51,7 @@
 			this.OBJFilePathField.Name = "OBJFilePathField";
 			this.OBJFilePathField.Size = new System.Drawing.Size(345, 20);
 			this.OBJFilePathField.TabIndex = 0;
+			this.OBJFilePathField.WordWrap = false;
 			// 
 			// OBJFileLabel
 			// 
@@ -67,6 +70,7 @@
 			this.OBJFilePathBrowseButton.TabIndex = 2;
 			this.OBJFilePathBrowseButton.Text = "Browse";
 			this.OBJFilePathBrowseButton.UseVisualStyleBackColor = true;
+			this.OBJFilePathBrowseButton.Click += new System.EventHandler(this.OBJFilePathBrowseButton_Click);
 			// 
 			// TextureFilePathLabel
 			// 
@@ -83,6 +87,7 @@
 			this.TextureFilePathField.Name = "TextureFilePathField";
 			this.TextureFilePathField.Size = new System.Drawing.Size(345, 20);
 			this.TextureFilePathField.TabIndex = 4;
+			this.TextureFilePathField.WordWrap = false;
 			// 
 			// TextureFilePathBrowseButton
 			// 
@@ -92,6 +97,7 @@
 			this.TextureFilePathBrowseButton.TabIndex = 5;
 			this.TextureFilePathBrowseButton.Text = "Browse";
 			this.TextureFilePathBrowseButton.UseVisualStyleBackColor = true;
+			this.TextureFilePathBrowseButton.Click += new System.EventHandler(this.TextureFilePathBrowseButton_Click);
 			// 
 			// OutputFilePathLabel
 			// 
@@ -108,6 +114,7 @@
 			this.OutputFilePathField.Name = "OutputFilePathField";
 			this.OutputFilePathField.Size = new System.Drawing.Size(345, 20);
 			this.OutputFilePathField.TabIndex = 7;
+			this.OutputFilePathField.WordWrap = false;
 			// 
 			// OutputFilePathBrowseButton
 			// 
@@ -117,6 +124,7 @@
 			this.OutputFilePathBrowseButton.TabIndex = 8;
 			this.OutputFilePathBrowseButton.Text = "Browse";
 			this.OutputFilePathBrowseButton.UseVisualStyleBackColor = true;
+			this.OutputFilePathBrowseButton.Click += new System.EventHandler(this.OutputFilePathBrowseButton_Click);
 			// 
 			// TexturePreviewBox
 			// 
@@ -125,6 +133,7 @@
 			this.TexturePreviewBox.Location = new System.Drawing.Point(15, 135);
 			this.TexturePreviewBox.Name = "TexturePreviewBox";
 			this.TexturePreviewBox.Size = new System.Drawing.Size(200, 200);
+			this.TexturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.TexturePreviewBox.TabIndex = 9;
 			this.TexturePreviewBox.TabStop = false;
 			// 
@@ -170,6 +179,7 @@
 			this.Name = "TOBJConverter";
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
 			this.Text = "TOBJ Converter";
+			this.Load += new System.EventHandler(this.TOBJConverter_Load);
 			((System.ComponentModel.ISupportInitialize)(this.TexturePreviewBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -190,6 +200,8 @@
 		private System.Windows.Forms.PictureBox TexturePreviewBox;
 		private System.Windows.Forms.Button ConvertButton;
 		private System.Windows.Forms.CheckBox DirectorySearchCheckbox;
+		private System.Windows.Forms.OpenFileDialog openFileDialog;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
 	}
 }
 
