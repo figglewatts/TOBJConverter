@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TOBJConverter
 {
-	public partial class Form1 : Form
+	public partial class TOBJConverter : Form
 	{
-		public Form1()
+		public TOBJConverter()
 		{
 			InitializeComponent();
 		}
