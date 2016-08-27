@@ -16,6 +16,7 @@ namespace TOBJConverter.Types
 		public ToriiObject(string objectFile, string objectTexture)
 		{
 			ObjectFile = objectFile;
+			ObjectTexture = objectTexture;
 		}
 	}
 }

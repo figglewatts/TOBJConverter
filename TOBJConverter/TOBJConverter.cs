@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TOBJConverter.IO;
+using TOBJConverter.Types;
 
 namespace TOBJConverter
 {
@@ -53,8 +55,20 @@ namespace TOBJConverter
 			TexturePreviewBox.Load();
 		}
 
+		private void ConvertOBJToTOBJ(string filePath)
+		{
+			string fileName = Path.GetFileNameWithoutExtension(filePath);
+		
+			string objString = File.ReadAllText(filePath);
+
+			ToriiObject tobj = new ToriiObject(objString, TextureFilePathField.Text);
+
+			ToriiObjectWriter.Write(Path.Combine(OutputFilePathField.Text, fileName + ".tobj"), tobj);
+		}
+
 		private void OBJFilePathBrowseButton_Click(object sender, EventArgs e)
 		{
+			openFileDialog.FileName = "";
 			openFileDialog.InitialDirectory = "";
 			openFileDialog.Filter = "OBJ Files (*.obj)|*.obj";
 			DialogResult r = DirectorySearchCheckbox.Checked ? folderBrowserDialog.ShowDialog() : openFileDialog.ShowDialog();
@@ -70,6 +84,7 @@ namespace TOBJConverter
 
 		private void TextureFilePathBrowseButton_Click(object sender, EventArgs e)
 		{
+			openFileDialog.FileName = "";
 			openFileDialog.Filter = "PNG Files (*.png)|*.png";
 			openFileDialog.InitialDirectory = GameDataDir;
 
@@ -130,6 +145,40 @@ namespace TOBJConverter
 				OutputFilePathField.Text = folderBrowserDialog.SelectedPath;
 				GoToTextboxEnd(OutputFilePathField);
 			}
+		}
+
+		private void ConvertButton_Click(object sender, EventArgs e)
+		{
+			if (OBJFilePathField.Text.Equals(string.Empty)
+			    || TextureFilePathField.Text.Equals(string.Empty)
+			    || OutputFilePathField.Text.Equals(string.Empty))
+			{
+				MessageBox.Show("Please make sure all text boxes have paths.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+		
+			if (DirectorySearchCheckbox.Checked)
+			{
+				// convert an entire directory
+				string[] objFiles = Directory.GetFiles(OBJFilePathField.Text, "*.obj");
+
+				Cursor.Current = Cursors.WaitCursor;
+
+				foreach (string objFile in objFiles)
+				{
+					ConvertOBJToTOBJ(objFile);
+				}
+			}
+			else
+			{
+				// convert a single file
+				ConvertOBJToTOBJ(OBJFilePathField.Text);
+			}
+
+			Cursor.Current = Cursors.Default;
+
+			MessageBox.Show("Successfully converted to TOBJ!", "Conversion success", MessageBoxButtons.OK,
+				MessageBoxIcon.Information);
 		}
 	}
 }

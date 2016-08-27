@@ -146,6 +146,7 @@
 			this.ConvertButton.TabIndex = 10;
 			this.ConvertButton.Text = "Convert";
 			this.ConvertButton.UseVisualStyleBackColor = true;
+			this.ConvertButton.Click += new System.EventHandler(this.ConvertButton_Click);
 			// 
 			// DirectorySearchCheckbox
 			// 
